@@ -10,6 +10,8 @@ There are a number of improvements I would make if I were to continue developing
     + Convert lat/lon to PostGIS point
 + Extract address & GIS data into a separate table
 + Extract pagination out into a separate module
++ Clean up `Listing.search` with ranges if absolute min/max are known
++ Rake task test coverage
 
 The application can be found at:
 [Opendoor Challenge on Heroku](https://opendoor-challenge.herokuapp.com)
