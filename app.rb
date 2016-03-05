@@ -15,7 +15,7 @@ class App < Sinatra::Base
   end
 
   get '/listings' do
-    listings = lookup(params)
+    listings = Listing.search(params)
     paginate(listings)
     geo_json(listings)
   end
@@ -60,17 +60,6 @@ class App < Sinatra::Base
   end
 
   def lookup(params)
-    query = Listing.order(:id)
 
-    query = query.where('price >= ?', params[:min_price]) if params[:min_price]
-    query = query.where('price <= ?', params[:max_price]) if params[:max_price]
-
-    query = query.where('bedrooms <= ?', params[:max_bed]) if params[:max_bed]
-    query = query.where('bedrooms >= ?', params[:min_bed]) if params[:min_bed]
-
-    query = query.where('bathrooms <= ?', params[:max_bath]) if params[:max_bath]
-    query = query.where('bathrooms >= ?', params[:min_bath]) if params[:min_bath]
-
-    query.paginate(page: params[:page], per_page: 100)
   end
 end
